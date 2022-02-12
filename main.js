@@ -46,20 +46,19 @@ let logs = [], res = [];
             logs[logs.length - 1].push(inputRaw*1);
             let y = getYao(i, inputRaw*1);
             thisYao.push(y);
-            if(i == 1 && y % 3 == 0){
-                change = true;
-            }
             thisGua.push(y%2);
         }
         console.log(thisGua,thisYao,logs);
         let thisRes = "此次卜卦结果，主卦是：" + getGua(thisGua);
-        if(change){//需要修正
-            thisGua[0] = 1 - thisGua[0];
+        if(thisYao.indexOf(6) > -1 || thisYao.indexOf(9) > -1){//待测试
+            for(let i in thisYao){
+                if(thisYao[i] == 6 || thisYao[i] == 9)thisGua[i] = 1 - thisGua[i];
+            }
             thisRes += "变卦为：" + getGua(thisGua);
         }else{
             thisRes += ". 没有变卦";
         }
-        res.push({"爻"：thisYao,"卦":thisGua});
+        res.push({"爻": thisYao,"卦": thisGua});
         alert(thisRes);
     };
 main();

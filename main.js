@@ -40,7 +40,7 @@ let logs = [], res = [];
     //1 getYao 2 getYY 3 累积阴阳 复挂100000
     main = function(){
         logs.push([]);
-        let thisYao = [], thisGua = [], change = false;
+        let thisYao = [], thisGua = [];
         for(let i = 1; i < 7; i++){
             let inputRaw = prompt(i + ". 壹-数字范围 0-49");
             logs[logs.length - 1].push(inputRaw*1);
@@ -48,17 +48,16 @@ let logs = [], res = [];
             thisYao.push(y);
             thisGua.push(y%2);
         }
-        console.log(thisGua,thisYao,logs);
-        let thisRes = "此次卜卦结果，主卦是：" + getGua(thisGua);
-        if(thisYao.indexOf(6) > -1 || thisYao.indexOf(9) > -1){//待测试
-            for(let i in thisYao){
-                if(thisYao[i] == 6 || thisYao[i] == 9)thisGua[i] = 1 - thisGua[i];
-            }
-            thisRes += "变卦为：" + getGua(thisGua);
-        }else{
-            thisRes += ". 没有变卦";
+        let thisRes = "此次卜卦结果，主卦是：" + getGua(thisGua)+". ";
+        let changeGua = [];
+        for(let i in thisYao){
+            changeGua[i] = (thisYao[i] == 6 || thisYao[i] == 9)? (1 - thisGua[i]) :  thisGua[i];
         }
-        res.push({"爻": thisYao,"卦": thisGua});
-        alert(thisRes);
+        if(getGua(thisGua) != getGua(changeGua)) thisRes += "变卦为：" + getGua(changeGua);
+        else thisRes += "没有变卦"
+        res.push({"爻": thisYao.join(""),"卦": thisGua.join(""),"变卦": changeGua.join(""),"输入":logs[logs.length - 1].join(" ")});
+        console.log(res);
+        console.log(thisRes);
+        alert("输入为：" + res[res.length - 1]["输入"] + "\n"+ thisRes);
     };
 main();

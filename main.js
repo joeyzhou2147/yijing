@@ -1,4 +1,4 @@
-let logs = [];
+let logs = [], res = [];
     Yao = {7:"ShaoYang", 9:"LaoYang",8:"ShaoYin",6:"LaoYin"},
     Change = {LaoYang:"ShaoYin", LaoYin:"ShaoYang"},
     // 01阴阳
@@ -53,12 +53,13 @@ let logs = [];
         }
         console.log(thisGua,thisYao,logs);
         let thisRes = "此次卜卦结果，主卦是：" + getGua(thisGua);
-        if(change){
+        if(change){//需要修正
             thisGua[0] = 1 - thisGua[0];
             thisRes += "变卦为：" + getGua(thisGua);
         }else{
             thisRes += ". 没有变卦";
         }
+        res.push({"爻"：thisYao,"卦":thisGua});
         alert(thisRes);
     };
 main();

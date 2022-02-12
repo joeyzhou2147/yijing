@@ -56,7 +56,7 @@ let logs = [], res = [];
         if(getGua(thisGua) != getGua(changeGua)) thisRes += "变卦为：" + getGua(changeGua);
         else thisRes += "没有变卦"
         res.push({"爻": thisYao.join(""),"卦": thisGua.join(""),"变卦": changeGua.join(""),"输入":logs[logs.length - 1].join(" ")});
-        console.log(res);
+        console.log(res[res.length - 1]);
         console.log(thisRes);
         alert("输入为：" + res[res.length - 1]["输入"] + "\n"+ thisRes);
     };

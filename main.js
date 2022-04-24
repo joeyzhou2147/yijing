@@ -23,11 +23,13 @@ let logs = [], res = [];
         sum -= Mod1;
         //请冥思
         left = prompt(i + ". 再-数字范围 0-"+sum)*1;
+        if(left == undefined) return undefined;
             logs[logs.length - 1].push(left);
         Mod2 = formatInput(left%4) + 1 + formatInput((sum-left-1)%4);
         sum -= Mod2;
         //请再三冥思
         left = prompt(i + ". 叁-数字范围 0-"+sum)*1;
+        if(left == undefined) return undefined;
             logs[logs.length - 1].push(left);
         return parseInt(left/4) + parseInt((sum-left-1)/4);
     },
@@ -43,8 +45,10 @@ let logs = [], res = [];
         let thisYao = [], thisGua = [];
         for(let i = 1; i < 7; i++){
             let inputRaw = prompt(i + ". 壹-数字范围 0-49");
+            if(inputRaw == undefined) return undefined;
             logs[logs.length - 1].push(inputRaw*1);
             let y = getYao(i, inputRaw*1);
+            if(y == undefined) return undefined;
             thisYao.push(y);
             thisGua.push(y%2);
         }
